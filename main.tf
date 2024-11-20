@@ -1,18 +1,18 @@
-module "subnets" {
-  source  = "hashicorp/subnets/cidr"
-  version = "1.0.0"
+# module "subnets" {
+#   source  = "hashicorp/subnets/cidr"
+#   version = "1.0.0"
 
-  base_cidr_block = var.cidr
+#   base_cidr_block = var.cidr
 
-  networks = flatten([
-    for k, v in local.subnets : [
-      for az in var.azs : {
-        name     = "${k}-${az}"
-        new_bits = v
-      }
-    ]
-  ])
-}
+#   networks = flatten([
+#     for k, v in local.subnets : [
+#       for az in var.azs : {
+#         name     = "${k}-${az}"
+#         new_bits = v
+#       }
+#     ]
+#   ])
+# }
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
